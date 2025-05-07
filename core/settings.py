@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import socket
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,7 +36,7 @@ ALLOWED_HOSTS = ['143.0.158.0', '127.0.0.1', 'localhost', ip_address]
 
 INSTALLED_APPS = [
     'jazzmin',
-    'jet',
+    # 'jet',
     'import_export',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -142,7 +143,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -153,19 +155,19 @@ X_FRAME_OPTIONS = 'MESMA ORIGEM'
 
 JAZZMIN_SETTINGS = {
     # # title of the window (Will default to current_admin_site.site_title if absent or None)
-    # "site_title": "Library Admin",
+    "site_title": "Portal RPA",
 
     # # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    # "site_header": "Library",
+    "site_header": "Portal RPA",
 
     # # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    # "site_brand": "Library",
+    "site_brand": "Portal RPA",
 
     # # Logo to use for your site, must be present in static files, used for brand on top left
-    # "site_logo": "books/img/logo.png",
+    "site_logo": "images/logo.gif",
 
     # # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    # "login_logo": None,
+    "login_logo": "images/logo.gif",
 
     # # Logo to use for login form in dark themes (defaults to login_logo)
     # "login_logo_dark": None,
@@ -177,10 +179,10 @@ JAZZMIN_SETTINGS = {
     # "site_icon": None,
 
     # # Welcome text on the login screen
-    # "welcome_sign": "Welcome to the library",
+    "welcome_sign": "Bem vindo ao Portal de RPA",
 
     # # Copyright on the footer
-    # "copyright": "Acme Library Ltd",
+    "copyright": "Equipe de RPA - Sicredi Fronteiras PR/SC/SP",
 
     # # List of model admins to search from the search bar, search bar omitted if excluded
     # # If you want to use a single search field you dont need to use a list, you can use a simple string 
@@ -224,10 +226,10 @@ JAZZMIN_SETTINGS = {
     # #############
 
     # # Whether to display the side menu
-    # "show_sidebar": True,
+    "show_sidebar": True,
 
     # # Whether to aut expand the menu
-    # "navigation_expanded": True,
+    "navigation_expanded": False,
 
     # # Hide these apps when generating side menu e.g (auth)
     # "hide_apps": [],
@@ -259,6 +261,9 @@ JAZZMIN_SETTINGS = {
         "db.AutomacaoNew": "fa-solid fa-bars-staggered",
         "db.RoboNew": "fa-solid fa-robot",
         "db.TarefaNew": "fa-solid fa-list-check",
+        "db.SituacaoAutomacao": "fa-solid fa-screwdriver-wrench",
+        "db.SituacaoRobo": "fa-solid fa-screwdriver-wrench",
+        "db.SituacaoRotina": "fa-solid fa-screwdriver-wrench",
         # <i class="fa-solid fa-list-check"></i>
     },
     # # Icons that are used when one is not manually specified
@@ -301,27 +306,27 @@ JAZZMIN_SETTINGS = {
 }
 
 
-JET_DEFAULT_THEME = 'light-gray'
+# JET_DEFAULT_THEME = 'light-gray'
 
-JET_THEMES = [
-    {
-        'theme': 'default',
-        'color': '#47bac1',
-        'title': 'Default'
-    },
-    {
-        'theme': 'green',
-        'color': '#44b78b',
-        'title': 'Green'
-    },
-    {
-        'theme': 'light-green',
-        'color': '#2faa60',
-        'title': 'Light Green'
-    },
-    {
-        'theme': 'light-gray',
-        'color': '#222',
-        'title': 'Light Gray'
-    }
-]
+# JET_THEMES = [
+#     {
+#         'theme': 'default',
+#         'color': '#47bac1',
+#         'title': 'Default'
+#     },
+#     {
+#         'theme': 'green',
+#         'color': '#44b78b',
+#         'title': 'Green'
+#     },
+#     {
+#         'theme': 'light-green',
+#         'color': '#2faa60',
+#         'title': 'Light Green'
+#     },
+#     {
+#         'theme': 'light-gray',
+#         'color': '#222',
+#         'title': 'Light Gray'
+#     }
+# ]

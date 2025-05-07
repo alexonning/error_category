@@ -1,7 +1,51 @@
 # admin.py
 from django.contrib import admin
 from django.db.models import Q
-from .models import AutomacaoNew, TarefaNew, RoboNew
+from .models import AutomacaoNew, SituacaoAutomacao, SituacaoRobo, SituacaoRotina, TarefaNew, RoboNew
+
+
+@admin.register(SituacaoAutomacao)
+class SituacaoAutomacaoAdmin(admin.ModelAdmin):
+    # Campos a serem exibidos
+    list_display = ('id', 'description')
+
+    # Campos somente leitura
+    readonly_fields = ['id']
+
+    # Filtros
+    list_filter = ['description']
+
+    # Ordem de exibição
+    fields = ['id', 'description']
+
+@admin.register(SituacaoRobo)
+class SituacaoRoboAdmin(admin.ModelAdmin):
+    # Campos a serem exibidos
+    list_display = ('id', 'description', 'observation')
+
+    # Campos somente leitura
+    readonly_fields = ['id']
+
+    # Filtros
+    list_filter = ['description', 'observation']
+
+    # Ordem de exibição
+    fields = ['id', 'description', 'observation']
+
+
+@admin.register(SituacaoRotina)
+class SituacaoRotinaAdmin(admin.ModelAdmin):
+    # Campos a serem exibidos
+    list_display = ('id', 'description')
+
+    # Campos somente leitura
+    readonly_fields = ['id']
+
+    # Filtros
+    list_filter = ['description']
+
+    # Ordem de exibição
+    fields = ['id', 'description']
 
 @admin.register(AutomacaoNew)
 class AutomacaoNewAdmin(admin.ModelAdmin):
@@ -10,6 +54,9 @@ class AutomacaoNewAdmin(admin.ModelAdmin):
 
     # # Campos somente leitura
     readonly_fields = ['id']
+
+    list_filter = ['project', 'project_name', 'situation', 'system_restriction', 'project_type', 'by_pass']
+
 
     fieldsets = (
             ('Informações Principais', {

@@ -3,7 +3,7 @@ from db.models import SituacaoRotina, RoboNew
 
 # Create your models here.
 class Category(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True, verbose_name='ID')
     name = models.CharField(max_length=100, unique=True, verbose_name='Nome')
     description = models.TextField(blank=True, null=True, verbose_name='Descrição')
     requires_description = models.BooleanField(default=False, blank=False, null=False, verbose_name='Requer Descrição')
@@ -18,7 +18,7 @@ class Category(models.Model):
 
 
 class ErrorCategory(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True, verbose_name='ID')
     description = models.TextField(blank=True, null=True, verbose_name='Descrição')
     Category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='error_categories', blank=False, null=True, verbose_name='Categoria   ')
     id_error = models.BigIntegerField(verbose_name='ID do erro', blank=True, null=True)

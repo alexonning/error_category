@@ -7,6 +7,7 @@ ATIVO_INATIVO = [
 ]
 
 PRIORITY = [
+    (0, 0),
     (1, 1),
     (2, 2),
     (3, 3),
@@ -21,34 +22,36 @@ PRIORITY = [
 
 
 class SituacaoAutomacao(models.Model):
-    id = models.BigIntegerField(primary_key=True)
-    descricao = models.TextField(verbose_name='Descrição')
+    id = models.BigIntegerField(primary_key=True, verbose_name='ID')
+    description = models.TextField(verbose_name='Descrição', db_column='descricao')
+        
+    def __str__(self):
+        return self.description
 
     class Meta:
         managed = False
         db_table = '"sustentacao"."situacao_automacao"'
         verbose_name = 'Situação Automação'
-        
-    def __str__(self):
-        return self.descricao
+        verbose_name_plural = 'Situação Automações'
 
 
 class SituacaoRobo(models.Model):
-    id = models.BigIntegerField(primary_key=True)
+    id = models.BigIntegerField(primary_key=True, verbose_name='ID')
     description = models.TextField(verbose_name='Descrição', db_column='descricao')
     observation = models.TextField(verbose_name='Descrição', db_column='obs')
-
-    class Meta:
-        managed = False
-        db_table = '"sustentacao"."situacao_robo"'
-        verbose_name = 'Situação Robo'
         
     def __str__(self):
         return self.description
 
+    class Meta:
+        managed = False
+        db_table = '"sustentacao"."situacao_robo"'
+        verbose_name = 'Situação Robô'
+        verbose_name_plural = 'Situação Robôs'
+
 
 class SituacaoRotina(models.Model):
-    id = models.BigIntegerField(primary_key=True)
+    id = models.BigIntegerField(primary_key=True, verbose_name='ID')
     description = models.TextField(verbose_name='Descrição', db_column='descricao')
 
     
@@ -59,10 +62,11 @@ class SituacaoRotina(models.Model):
         managed = False
         db_table = '"sustentacao"."situacao_rotina"'
         verbose_name = 'Situação Rotina'
+        verbose_name_plural = 'Situação Rotinas'
 
 
 class Projeto(models.Model):
-    id = models.BigIntegerField(primary_key=True)
+    id = models.BigIntegerField(primary_key=True, verbose_name='ID')
     name = models.CharField(max_length=255, db_column='nome', verbose_name='Nome')
     area = models.CharField(max_length=255, db_column='area', verbose_name='Area')
 
@@ -142,7 +146,7 @@ class TarefaNew(models.Model):
 
 
 class RoboNew(models.Model):
-    id = models.BigIntegerField(primary_key=True)
+    id = models.BigIntegerField(primary_key=True, verbose_name='ID')
     description = models.CharField(max_length=255, verbose_name='Nome', db_column='nome')
     automation = models.ForeignKey(AutomacaoNew, on_delete=models.PROTECT, db_column='id_automacao', verbose_name='Automação', blank=True, null=True)
     situation = models.ForeignKey(SituacaoRobo, on_delete=models.PROTECT, db_column='id_situacao', verbose_name='Situação')
@@ -164,7 +168,7 @@ class RoboNew(models.Model):
         
         
 class RoboHasAutomacao(models.Model):
-    id = models.BigIntegerField(primary_key=True)
+    id = models.BigIntegerField(primary_key=True, verbose_name='ID')
     robot = models.ForeignKey(RoboNew, on_delete=models.PROTECT, db_column='id_robo', verbose_name='Robo')
     automation = models.ForeignKey(AutomacaoNew(), on_delete=models.PROTECT, db_column='id_automacao', verbose_name='Automação')
 
@@ -180,7 +184,7 @@ class RoboHasAutomacao(models.Model):
         
 
 class HistoricoTabela(models.Model):
-    id = models.BigIntegerField(primary_key=True)
+    id = models.BigIntegerField(primary_key=True, verbose_name='ID')
     affected_table = models.TextField(verbose_name='Tabela Afetada', db_column='tabela_afetada')
     action = models.TextField(verbose_name='Ação', db_column='acao')
     data = models.JSONField(verbose_name='Dados', db_column='dados')
