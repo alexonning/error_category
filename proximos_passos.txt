@@ -1,0 +1,6 @@
+- Organizar dados na visualização de colunas 
+
+- Criar UPDATE em massa
+    Realizar alterações nas rotinas em grande escala, definindo a categoria e qual a situação que deve ser alterado
+
+- Trazer todo o schema de sustentacao para a aplicação
